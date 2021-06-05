@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "705566426812",
+    "project_id": "medom-74337",
+    "storage_bucket": "medom-74337.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705566426812:android:6a20bf4de88c7c365272b9",
+        "android_client_info": {
+          "package_name": "com.example.medom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "705566426812-lscb1rvdnfqiq8bn8e76oikhjvfc4lh8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD7M46x9R5q56i43uvaBUZqegKJ04LXvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "705566426812-lscb1rvdnfqiq8bn8e76oikhjvfc4lh8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
