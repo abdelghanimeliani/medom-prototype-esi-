@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medom/constants.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
@@ -23,7 +24,7 @@ class Background extends StatelessWidget {
               height: size.height,
               decoration: BoxDecoration(
                   gradient: LinearGradient(
-                      colors: [Color(0xff4dbdac), Color(0xffe0f2f1)],
+                      colors: [ksecondaryColor, Color(0xffe0f2f1)],
                       begin: Alignment.bottomCenter,
                       end: Alignment.bottomRight)),
             ),
@@ -35,7 +36,7 @@ class Background extends StatelessWidget {
               height: size.height,
               decoration: BoxDecoration(
                   gradient: LinearGradient(
-                      colors: [Color(0xff4dbdac), Color(0xffe0f2f1)],
+                      colors: [ksecondaryColor, Color(0xffe0f2f1)],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight)),
             ),

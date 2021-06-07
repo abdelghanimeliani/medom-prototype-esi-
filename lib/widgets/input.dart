@@ -23,10 +23,14 @@ class RoundedInputField extends StatelessWidget {
         onSaved: onClick,
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return "taper votre nom d'utilisateur";
-          }else{
-            return null;
-          }
+           if (hintText.contains('email')){
+             return 'taper ton adresse e-mail svp' ;
+           }else if (hintText.contains('places')){
+             return 'taper le nombre de places libres actuelement';
+           }else if (hintText.contains('med')){
+             return 'ajouter le nombre de medecins';
+           }
+          }else return null ;
 
         },
         onChanged: onChanged,

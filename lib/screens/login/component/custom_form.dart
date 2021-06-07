@@ -52,7 +52,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 ),
                 SizedBox(height: size.height * 0.03),
                 Image.asset(
-                  "assets/images/doctor.png",
+                  "assets/images/logo.png",
                   width: size.width * 0.35,
                 ),
                 SizedBox(height: size.height * 0.1),
