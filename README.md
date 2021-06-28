@@ -23,20 +23,14 @@ c'est une petite fonctionalité d'une application qui s'appelle medome , constru
       </ul>
     </li>
     <li>
- 
-    </li>
-    <li><a href="#usage">Usage</a></li>
-  
-
   </ol>
 </details>
 
 ### Screens
 
-|Login Screen|interface Utilisateur|interface admin |
-|:------------:|:------------:|:-------------:|:-------------:|
-![Login Screen](assets/images/login.png)|![interface utilisateur](assets/images/ui.png)|![interface admin](assets/images/admin.png)|
-
+|Login screen|user interface|admin interface|
+|:------------:|:------------:|:-------------:|
+![show categoies](assets/images/logo.png)|![show products](assets/images/ui.png)|![the product](assets/images/admin.png)|
 
 
 <!-- ABOUT THE PROJECT -->
