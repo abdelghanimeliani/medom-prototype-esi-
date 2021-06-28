@@ -18,16 +18,15 @@ c'est une petite fonctionalité d'une application qui s'appelle medome , constru
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      
-         <ul>
+      <ul>
         <li><a href="#comment-ca-marche">Built With</a></li>
       </ul>
+      
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li>
-    
+
 
   </ol>
 </details>
