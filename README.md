@@ -13,21 +13,7 @@ c'est une petite fonctionalité d'une application qui s'appelle medome , constru
 
   <h3 align="center">le logo de medom</h3>
 
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      
-      <ul>
-         <li><a href="#comment-ca-marche">Built With</a></li>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
 
-
-  </ol>
-</details>
 
 
 ### Screens
