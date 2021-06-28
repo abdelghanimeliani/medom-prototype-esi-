@@ -1,16 +1,59 @@
-# medom
+# Medom Proto
 
 protoype
 
-## Getting Started
+## c'est quoi ?
+c'est une petite fonctionalité d'une application qui s'appelle medome , construite dans le cadre d'un mini projet 
 
-This project is a starting point for a Flutter application.
+<br />
+<p align="center">
+  <a href="https://github.com/abdelghanimeliani/hackthebot">
+    <img src="assets/images/logo.png" alt="logo" width="280" height="280" >
+  </a>
 
-A few resources to get you started if this is your first Flutter project:
+  <h3 align="center">le logo de medom</h3>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+ 
+    </li>
+    <li><a href="#usage">Usage</a></li>
+  
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  </ol>
+</details>
+
+### Screens
+
+|Login Screen|interface Utilisateur|interface admin |
+|:------------:|:------------:|:-------------:|:-------------:|
+![Login Screen](assets/images/login.png)|![interface utilisateur](assets/images/ui.png)|![interface admin](assets/images/admin.png)|
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+### comment ca marche ? 
+reste a remplir 
+
+### Built With
+
+* [FLutter](https://flutter.dev/)
+* [Firebase](https://firebase.google.com/)
+
+
+
+
+
+
+
+
+
