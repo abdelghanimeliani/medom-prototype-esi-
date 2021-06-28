@@ -33,15 +33,16 @@ c'est une petite fonctionalité d'une application qui s'appelle medome , constru
 
 ### Screens
 
-|show categoies|show products|the prodect|the price|
+|Login Screen|interface Utilisateur|interface admin |
 |:------------:|:------------:|:-------------:|:-------------:|
-![Login Screen](images/choosecat.jpg)|![interface utilisateur](images/chooseproduct.jpg)|![interface admin](images/product.jpg)|
+![Login Screen](assets/images/login.png)|![interface utilisateur](assets/images/ui.png)|![interface admin](assets/images/admin.png)|
 
 
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Stigno is a free, open source e-commerce telegram bot made by Python . Stingo offers too much features. 
+### comment ca marche ? 
+reste a remplir 
 
 ### Built With
 
