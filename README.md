@@ -18,9 +18,9 @@ c'est une petite fonctionalité d'une application qui s'appelle medome , constru
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
+    
+       <a href="#built-with">Built With</a>
+     
     </li>
     <li>
   </ol>
@@ -30,7 +30,7 @@ c'est une petite fonctionalité d'une application qui s'appelle medome , constru
 
 |Login screen|user interface|admin interface|
 |:------------:|:------------:|:-------------:|
-![show categoies](assets/images/logo.png)|![show products](assets/images/ui.png)|![the product](assets/images/admin.png)|
+![show categoies](assets/images/login.png)|![show products](assets/images/ui.png)|![the product](assets/images/admin.png)|
 
 
 <!-- ABOUT THE PROJECT -->
