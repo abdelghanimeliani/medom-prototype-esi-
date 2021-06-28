@@ -33,6 +33,7 @@ class MyCustomFormState extends State<MyCustomForm> {
 
   @override
   Widget build(BuildContext context) {
+    String localEmail ;
     var size = MediaQuery.of(context).size;
 
   var auth = FirebaseAuth.instance ;
@@ -57,10 +58,11 @@ class MyCustomFormState extends State<MyCustomForm> {
                 ),
                 SizedBox(height: size.height * 0.1),
                 RoundedInputField(
-                  hintText: "Your Email",
+                  hintText: "Your email",
 
                   onClick: (value) {
                     BodyLogin.email = value ;
+                    localEmail= value ;
                   },
                 ),
                 RoundedPasswordField(
@@ -89,20 +91,21 @@ class MyCustomFormState extends State<MyCustomForm> {
                           );
 
                           if(BodyLogin.email.contains("medom")){
+                            var emailList = localEmail.split('@');
+                           var localEmailName = emailList[0];
+                           HomePage.emailName=localEmailName ;
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                           }else{
+
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePageMalade()));
                           }
 
                         } on FirebaseAuthException catch (e) {
-                          if (e.code == 'user-not-found') {
-                            print('No user found for that email.');
-                          } else if (e.code == 'wrong-password') {
-                            print('Wrong password provided for that user.');
-                          }
+                          final snackBar = SnackBar(content: Text(e.message));
+                          Scaffold.of(context).showSnackBar(snackBar);
+
                         }
                       }
-
                     }
 
                     ),

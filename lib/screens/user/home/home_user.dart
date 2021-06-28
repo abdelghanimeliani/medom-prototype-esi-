@@ -3,13 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medom/constants.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:medom/models/hospital.dart';
+import 'package:medom/services/services.dart';
 
 class HomePageMalade extends StatefulWidget {
   static String id = "home for user";
+
   @override
   State<StatefulWidget> createState() {
+
     return _stateHomePageMalade();
   }
+
+
 }
 
 
@@ -17,9 +23,12 @@ class HomePageMalade extends StatefulWidget {
 class _stateHomePageMalade extends State<HomePageMalade> {
   @override
   Widget build(BuildContext context) {
-
+   List <Hospital> hopi ;
 String zero = '0';
 
+initState() async {
+  hopi =await  StoreAndGet.loadHospitals();
+}
 
     Widget _buildItem(String N, String hospitalName, String adress , String nbrPlaces , String nbrMedecins) {
     return Padding(
@@ -91,8 +100,10 @@ String zero = '0';
                     ])
                     ,SizedBox(height: 10.0,)],
                   )),
+
+
               IconButton(
-                  icon:  Icon(Icons.circle)  ,
+                  icon: nbrPlaces.hashCode==zero.hashCode ? Icon(Icons.not_interested_outlined) :  Icon(Icons.check)  ,
                   color: nbrPlaces.hashCode==zero.hashCode ? Colors.red : Colors.green,
                   onPressed: () {}),
 
@@ -140,27 +151,35 @@ String zero = '0';
                     padding: EdgeInsets.only(top: 45.0),
                     child: Container(
                         height: MediaQuery.of(context).size.height - 50.0,
-                        child: ListView(
-                          children: [
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '123'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '123'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '123'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '123'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '123'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '123'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '123'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '123'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '0', '123'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '123'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '0', '10'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '0', '0'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '0', '0'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '0', '0'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '0'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '0'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '0'),
-                        _buildItem('mb', 'mustapa bacha', 'alger', '120', '0'),
-                          ],
+                        child: StreamBuilder(
+                          stream: FirebaseFirestore.instance.collection('hospitals').snapshots(),
+                          // ignore: missing_return
+                          builder: (BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
+                            if(!snapshot.hasData){
+                              return Center(
+                                child: Text(
+                                  'Loading...',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 15.0,
+                                    color: kPrimaryColor,
+                                  ),
+                                ),
+                              );
+                            }else{
+                              return new ListView.builder(
+                                itemCount: snapshot.data.docs.length,
+                                  itemBuilder: (context,index){
+                                  DocumentSnapshot itemdata = snapshot.data.docs[index];
+                                  return _buildItem(itemdata[kabrv], itemdata[kname], itemdata[kadresse], itemdata[knbrplaces], itemdata[knbrMedecin]);
+                                  });
+                            }
+
+
+
+                          },
+                        )
+
                         )
                        /* StreamBuilder(
                           stream: FirebaseFirestore.instance.collection('hospitals').snapshots(),
@@ -179,8 +198,7 @@ String zero = '0';
                           },
                         )*/
                     )
-                ),
-              ],
+]              ,
             ),
 
 

@@ -1,3 +1,5 @@
+import '../constants.dart';
+
 class Hospital {
    String abrv ;
    String emailName ;
@@ -11,22 +13,22 @@ class Hospital {
    this.nbrPbaces, this.nbrMedecins});
 
    Map toJson() => {
-     "abrv": this.abrv,
-     "emailName": this.emailName,
-     "name" : this.name,
-     "adresse" : this.adresse,
-     "nbrPbaces" : this.nbrPbaces,
-     "nbrMedecins" : this.nbrMedecins,
+     kabrv: this.abrv,
+     kemailName: this.emailName,
+     kname : this.name,
+     kadresse : this.adresse,
+     knbrplaces : this.nbrPbaces,
+     knbrMedecin: this.nbrMedecins,
    };
 
    factory Hospital.fromJson(Map<String, dynamic> json) {
    return Hospital(
-       abrv: json["abrv"],
-       emailName: json["emailName"],
-       name : json["name"],
-       adresse : json["adresse"],
-       nbrPbaces : json["nbrPlaces"],
-       nbrMedecins : json["nbrMedecins"],
+       abrv: json[kabrv],
+       emailName: json[kemailName],
+       name : json[kname],
+       adresse : json[kadresse],
+       nbrPbaces : json[knbrplaces],
+       nbrMedecins : json[knbrMedecin],
    );
 
 
