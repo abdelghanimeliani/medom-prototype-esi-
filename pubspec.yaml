@@ -28,6 +28,12 @@ dependencies:
   firebase_core:
   cloud_firestore:
   firebase_database:
+  flutter_icons:
+  page_transition:
+  animated_bottom_navigation_bar:
+  fl_chart:
+  percent_indicator:
+
 
 
   # The following adds the Cupertino Icons font to your application.
