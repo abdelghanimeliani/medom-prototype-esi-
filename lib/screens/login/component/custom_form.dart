@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:medom/screens/med/home/home_med.dart';
+import 'package:medom/screens/nav/navigation.dart';
 import 'package:medom/screens/user/home/home_user.dart';
 //import 'package:medom/services/auth.dart';
 //import 'package:medom/services/auth.dart';
@@ -97,7 +98,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                           }else{
 
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePageMalade()));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => RootApp()));
                           }
 
                         } on FirebaseAuthException catch (e) {

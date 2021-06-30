@@ -1,17 +1,16 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:budget_tracker_ui/pages/budget.dart';
-import 'package:budget_tracker_ui/pages/create_budgert.dart';
-import 'package:budget_tracker_ui/pages/dayli_page.dart';
-import 'package:budget_tracker_ui/pages/profile_page.dart';
-import 'package:budget_tracker_ui/pages/state_page.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medom/constants.dart';
+import 'package:medom/screens/daily_question/dailyq.dart';
+
 import 'package:medom/screens/user/home/home_user.dart';
-import '../theme/colors.dart';
+
 import 'package:flutter_icons/flutter_icons.dart';
 
 class RootApp extends StatefulWidget {
+  static String id ="id wkhlas";
   @override
   _RootAppState createState() => _RootAppState();
 }
@@ -23,17 +22,6 @@ class _RootAppState extends State<RootApp> {
     return Scaffold(
       body: getBody(),
       bottomNavigationBar: getFooter(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          selectedTab(4);
-        },
-        child: Icon(
-          Icons.add,
-          size: 25,
-        ),
-        backgroundColor: primary,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
@@ -42,21 +30,19 @@ class _RootAppState extends State<RootApp> {
       index: pageIndex,
       children: [
        HomePageMalade(),
-
+        DailyQuestion()
       ],
     );
   }
 
   Widget getFooter() {
     List<IconData> iconItems = [
-      Ionicons.md_calendar,
-      Ionicons.md_stats,
-      Ionicons.md_wallet,
-      Ionicons.ios_person,
+      Ionicons.ios_home,
+      Ionicons.md_medical
     ];
     return AnimatedBottomNavigationBar(
         icons: iconItems,
-        activeColor: kPrimaryColor,
+        activeColor: ksecondaryColor,
         activeIndex: pageIndex,
         inactiveColor: kPrimaryColor.withOpacity(0.5),
         splashColor:ksecondaryColor ,
