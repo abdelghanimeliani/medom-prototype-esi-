@@ -10,6 +10,7 @@ import 'package:medom/screens/user/home/home_user.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class RootApp extends StatefulWidget {
+  static String emailName ;
   static String id ="id wkhlas";
   @override
   _RootAppState createState() => _RootAppState();
@@ -29,8 +30,9 @@ class _RootAppState extends State<RootApp> {
     return IndexedStack(
       index: pageIndex,
       children: [
+        DailyQuestion(),
        HomePageMalade(),
-        DailyQuestion()
+
       ],
     );
   }

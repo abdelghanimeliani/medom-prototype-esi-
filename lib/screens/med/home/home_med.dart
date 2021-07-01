@@ -24,37 +24,67 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State{
+@override
+  void initState()async {
+    // TODO: implement initState
+    super.initState();
 
+      try{
+
+        await  FirebaseFirestore.instance
+            .collection('hospitals')
+            .doc(HomePage.emailName)
+            .get()
+            .then((DocumentSnapshot documentSnapshot) {
+
+          if (documentSnapshot.exists) {
+            print('kayen');
+            print('Document data: ${documentSnapshot.data()}');
+            HomePage.nbrm= documentSnapshot.data()[knbrMedecin];
+            HomePage.nbrp = documentSnapshot.data()[knbrplaces];
+            //adresse = documentSnapshot.data()[kadresse];
+
+          } else {
+            print('Document does not exist on the database');
+            //  adresse ='-1';
+          }
+        });
+      }catch(e){
+        e.message ;
+      }
+
+
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
- void getData() async {
-  try{
+    void getData() async {
+      try{
 
-    await  FirebaseFirestore.instance
-        .collection('hospitals')
-        .doc(HomePage.emailName)
-        .get()
-        .then((DocumentSnapshot documentSnapshot) {
+        await  FirebaseFirestore.instance
+            .collection('hospitals')
+            .doc(HomePage.emailName)
+            .get()
+            .then((DocumentSnapshot documentSnapshot) {
 
-      if (documentSnapshot.exists) {
-        print('kayen');
-        print('Document data: ${documentSnapshot.data()}');
-        HomePage.nbrm= documentSnapshot.data()[knbrMedecin];
-        HomePage.nbrp = documentSnapshot.data()[knbrplaces];
-        //adresse = documentSnapshot.data()[kadresse];
+          if (documentSnapshot.exists) {
+            print('kayen');
+            print('Document data: ${documentSnapshot.data()}');
+            HomePage.nbrm= documentSnapshot.data()[knbrMedecin];
+            HomePage.nbrp = documentSnapshot.data()[knbrplaces];
+            //adresse = documentSnapshot.data()[kadresse];
 
-      } else {
-        print('Document does not exist on the database');
-      //  adresse ='-1';
+          } else {
+            print('Document does not exist on the database');
+            //  adresse ='-1';
+          }
+        });
+      }catch(e){
+        e.message ;
       }
-    });
-  }catch(e){
-    e.message ;
-  }
 
-}
+    }
 
 
     final _formKey = GlobalKey<FormState>();

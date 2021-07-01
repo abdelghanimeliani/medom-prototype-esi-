@@ -97,7 +97,9 @@ class MyCustomFormState extends State<MyCustomForm> {
                            HomePage.emailName=localEmailName ;
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                           }else{
-
+                            var emailList = localEmail.split('@');
+                            var localEmailName = emailList[0];
+                            RootApp.emailName=localEmailName ;
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => RootApp()));
                           }
 

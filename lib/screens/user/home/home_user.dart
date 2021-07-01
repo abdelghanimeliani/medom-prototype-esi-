@@ -123,87 +123,89 @@ initState() async {
 
     //var db = FirebaseDatabase.instance.reference().child('hospitals');
 
-    return Scaffold(
-      backgroundColor: kPrimaryLightColor,
-      appBar: AppBar(
-        title: Center(
-          child: Text("Hopitaux", style: TextStyle(
-              color: kPrimaryLightColor ,
-              fontFamily: 'Montserrat',
-              fontSize: 17.0,
-              fontWeight: FontWeight.bold
-          )),
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: kPrimaryLightColor,
+        appBar: AppBar(
+          title: Center(
+            child: Text("Hopitaux", style: TextStyle(
+                color: kPrimaryLightColor ,
+                fontFamily: 'Montserrat',
+                fontSize: 17.0,
+                fontWeight: FontWeight.bold
+            )),
+          ),
+          backgroundColor: kPrimaryColor,
         ),
-        backgroundColor: kPrimaryColor,
-      ),
-      body: ListView(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              color: Colors.white,
-            ),
-            child: ListView(
-              primary: false,
-              padding: EdgeInsets.only(left: 25.0, right: 20.0),
-              children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.only(top: 45.0),
-                    child: Container(
-                        height: MediaQuery.of(context).size.height - 50.0,
-                        child: StreamBuilder(
-                          stream: FirebaseFirestore.instance.collection('hospitals').snapshots(),
-                          // ignore: missing_return
-                          builder: (BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
-                            if(!snapshot.hasData){
-                              return Center(
-                                child: Text(
-                                  'Loading...',
-                                  style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 15.0,
-                                    color: kPrimaryColor,
+        body: ListView(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: ListView(
+                primary: false,
+                padding: EdgeInsets.only(left: 25.0, right: 20.0),
+                children: <Widget>[
+                  Padding(
+                      padding: EdgeInsets.only(top: 45.0),
+                      child: Container(
+                          height: MediaQuery.of(context).size.height - 50.0,
+                          child: StreamBuilder(
+                            stream: FirebaseFirestore.instance.collection('hospitals').snapshots(),
+                            // ignore: missing_return
+                            builder: (BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
+                              if(!snapshot.hasData){
+                                return Center(
+                                  child: Text(
+                                    'Loading...',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 15.0,
+                                      color: kPrimaryColor,
+                                    ),
                                   ),
-                                ),
-                              );
-                            }else{
-                              return new ListView.builder(
-                                itemCount: snapshot.data.docs.length,
-                                  itemBuilder: (context,index){
-                                  DocumentSnapshot itemdata = snapshot.data.docs[index];
-                                  return _buildItem(itemdata[kabrv], itemdata[kname], itemdata[kadresse], itemdata[knbrplaces], itemdata[knbrMedecin]);
-                                  });
-                            }
+                                );
+                              }else{
+                                return new ListView.builder(
+                                  itemCount: snapshot.data.docs.length,
+                                    itemBuilder: (context,index){
+                                    DocumentSnapshot itemdata = snapshot.data.docs[index];
+                                    return _buildItem(itemdata[kabrv], itemdata[kname], itemdata[kadresse], itemdata[knbrplaces], itemdata[knbrMedecin]);
+                                    });
+                              }
 
 
 
-                          },
-                        )
+                            },
+                          )
 
-                        )
-                       /* StreamBuilder(
-                          stream: FirebaseFirestore.instance.collection('hospitals').snapshots(),
-                          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            }
-                              return ListView(
-                                children: snapshot.data.docs.map((DocumentSnapshot document) {
-                                  print(document.data);
-                                 // return _buildItem(document.data()['abrv'], document.data()['name'], document.data()['adresse']);
-                                }).toList(),
-                              );
-                          },
-                        )*/
-                    )
+                          )
+                         /* StreamBuilder(
+                            stream: FirebaseFirestore.instance.collection('hospitals').snapshots(),
+                            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                                return ListView(
+                                  children: snapshot.data.docs.map((DocumentSnapshot document) {
+                                    print(document.data);
+                                   // return _buildItem(document.data()['abrv'], document.data()['name'], document.data()['adresse']);
+                                  }).toList(),
+                                );
+                            },
+                          )*/
+                      )
 ]              ,
-            ),
+              ),
 
 
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
