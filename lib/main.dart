@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:medom/screens/daily_question/dailyq.dart';
 import 'package:medom/screens/login/login_page.dart';
 import 'package:medom/screens/med/home/home_med.dart';
+import 'package:medom/screens/medical_interface/DoctorPage.dart';
 import 'package:medom/screens/nav/navigation.dart';
+import 'package:medom/screens/thanks_result/thanks_result.dart';
 import 'package:medom/screens/user/home/home_user.dart';
 import 'package:medom/services/services.dart';
 
@@ -26,13 +28,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      initialRoute: RootApp.id,
+
+      initialRoute: DoctorPage.id,
       routes: {
         LoginScreen.id: (context) => LoginScreen(),
         HomePageMalade.id:(context)=> HomePageMalade(),
         HomePage.id : (context)=> HomePage(),
         DailyQuestion.id : (context)=> DailyQuestion(),
         RootApp.id : (context)=> RootApp(),
+        WelcomeScreen.id : (context)=> WelcomeScreen(),
+        DoctorPage.id :(context)=> DoctorPage(),
       },
     );
   }

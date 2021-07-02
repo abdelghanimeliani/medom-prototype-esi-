@@ -320,7 +320,8 @@ class _DailyQuestionState extends State<DailyQuestion> {
                         ktemp : result.results[7].results[0].result,
                         kdescription : result.results[8].results[0].result,
                         kenv : true,
-                        krep : false ,}
+                        krep : false ,
+                        idoc : RootApp.emailName}
                   )
                       .then((value) => print("User Added"))
                       .catchError((error) => print("Failed to add user: $error"));
