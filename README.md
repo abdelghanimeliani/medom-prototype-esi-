@@ -22,6 +22,15 @@ c'est une petite fonctionalité d'une application qui s'appelle medome , constru
 |:------------:|:------------:|:-------------:|
 ![show categoies](assets/images/login.png)|![show products](assets/images/ui.png)|![the product](assets/images/admin.png)|
 
+|Page De Medecins|Page De Detaile|Questionnaire|
+|:------------:|:------------:|:-------------:|
+![Page De Medecins](assets/images/medui.png)|![Page De Detaile](assets/images/detail_page.png)|![Questionnaire](assets/images/ques.png)|
+
+|merci|courbatures ou douleures|resultat|
+|:------------:|:------------:|:-------------:|
+![merci](assets/images/medui.png)|![courbatures ou douleure](assets/images/detail_page.png)|![resultat](assets/images/ques.png)|
+
+
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
