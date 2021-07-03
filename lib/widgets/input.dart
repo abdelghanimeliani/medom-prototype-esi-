@@ -29,6 +29,8 @@ class RoundedInputField extends StatelessWidget {
              return 'taper le nombre de places libres actuelement';
            }else if (hintText.contains('med')){
              return 'ajouter le nombre de medecins';
+           }else if (hintText.contains('con')){
+             return 'ajouter des consignes svp';
            }
           }else return null ;
 

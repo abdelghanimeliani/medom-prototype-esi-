@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:medom/screens/med/home/home_med.dart';
-import 'package:medom/screens/nav/navigation.dart';
+import 'package:medom/screens/medical_interface/DoctorPage.dart';
+
+import 'package:medom/screens/root/root.dart';
 import 'package:medom/screens/user/home/home_user.dart';
 //import 'package:medom/services/auth.dart';
 //import 'package:medom/services/auth.dart';
@@ -91,16 +93,22 @@ class MyCustomFormState extends State<MyCustomForm> {
                               password: BodyLogin.password
                           );
 
-                          if(BodyLogin.email.contains("medom")){
+                          if(BodyLogin.email.contains("medom") && !(BodyLogin.email.contains('_'))){
                             var emailList = localEmail.split('@');
                            var localEmailName = emailList[0];
                            HomePage.emailName=localEmailName ;
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
-                          }else{
+                          }
+
+                         else if (BodyLogin.email=='ka_med@medom.com'){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DoctorPage()));
+                          }
+
+                          else{
                             var emailList = localEmail.split('@');
                             var localEmailName = emailList[0];
-                            RootApp.emailName=localEmailName ;
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => RootApp()));
+                            RootAppPrim.emailName=localEmailName ;
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => RootAppPrim()));
                           }
 
                         } on FirebaseAuthException catch (e) {

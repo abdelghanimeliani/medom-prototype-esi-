@@ -39,76 +39,78 @@ initState() async {
                  // builder: (context) => DetailsPage(heroTag: imgPath, foodName: foodName, foodPrice: price)
               ));
             },*/
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                  child:Column(
-                    children: [Row(children: [
-                      Container(
-                        padding: EdgeInsets.all(10.0),
-                        margin: EdgeInsets.only(bottom: 15.0),
-                        decoration: BoxDecoration(
-                            color: kPrimaryColor, shape: BoxShape.circle),
-                        child: Text(
-                          N,
-                          style: TextStyle(
-                              color: kPrimaryLightColor,
-                              fontFamily: 'Montserrat',
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold),
+          child: SingleChildScrollView(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                    child:Column(
+                      children: [Row(children: [
+                        Container(
+                          padding: EdgeInsets.all(10.0),
+                          margin: EdgeInsets.only(bottom: 15.0),
+                          decoration: BoxDecoration(
+                              color: kPrimaryColor, shape: BoxShape.circle),
+                          child: Text(
+                            N,
+                            style: TextStyle(
+                                color: kPrimaryLightColor,
+                                fontFamily: 'Montserrat',
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 50.0),
-                      Column(crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(hospitalName,
-                                style: TextStyle(
-                                    color: kPrimaryColor,
+                        SizedBox(width: 30.0),
+                        Column(crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(hospitalName,
+                                  style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 17.0,
+                                      fontWeight: FontWeight.bold)),
+                              SizedBox(height: 10.0),
+
+
+                              Text("nombre de places libres : " + nbrPlaces,
+                                  style: TextStyle(
                                     fontFamily: 'Montserrat',
-                                    fontSize: 17.0,
-                                    fontWeight: FontWeight.bold)),
-                            SizedBox(height: 10.0),
+                                    fontSize: 15.0,
+                                    color: kPrimaryColor,
+                                  )),
+
+                              SizedBox(height: 10.0),
+                              Text("nombre de medecins  : " + nbrMedecins,
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 15.0,
+                                    color: kPrimaryColor,
+                                  )),
+
+                              SizedBox(height: 10.0),
+
+                              Text(adress,
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 13.0,
+                                    color: ksecondaryColor,
+                                  ))
+                            ]),
 
 
-                            Text("nombre de places libres : " + nbrPlaces,
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 15.0,
-                                  color: kPrimaryColor,
-                                )),
-
-                            SizedBox(height: 10.0),
-                            Text("nombre de medecins  : " + nbrMedecins,
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 15.0,
-                                  color: kPrimaryColor,
-                                )),
-
-                            SizedBox(height: 10.0),
-
-                            Text(adress,
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 13.0,
-                                  color: ksecondaryColor,
-                                ))
-                          ]),
+                      ])
+                      ,SizedBox(height: 10.0,)],
+                    )),
 
 
-                    ])
-                    ,SizedBox(height: 10.0,)],
-                  )),
+                IconButton(
+                    icon: nbrPlaces.hashCode==zero.hashCode ? Icon(Icons.not_interested_outlined) :  Icon(Icons.check)  ,
+                    color: nbrPlaces.hashCode==zero.hashCode ? Colors.red : Colors.green,
+                    onPressed: () {}),
 
 
-              IconButton(
-                  icon: nbrPlaces.hashCode==zero.hashCode ? Icon(Icons.not_interested_outlined) :  Icon(Icons.check)  ,
-                  color: nbrPlaces.hashCode==zero.hashCode ? Colors.red : Colors.green,
-                  onPressed: () {}),
-
-
-            ],
+              ],
+            ),
           ),
         ));
   }

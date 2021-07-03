@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medom/constants.dart';
 import 'package:medom/screens/login/component/back.dart';
-import 'package:medom/screens/nav/navigation.dart';
+
+import 'package:medom/screens/root/root.dart';
+import 'package:medom/screens/thanks_result/thanks_result.dart';
 import 'package:survey_kit/survey_kit.dart';
 
 
@@ -16,123 +18,81 @@ class DailyQuestion extends StatefulWidget {
 class _DailyQuestionState extends State<DailyQuestion> {
 
   int state =0 ;
-  @override
-  Future<void> initState() async {
-    // TODO: implement initState
-    super.initState();
-    try{
-      await  FirebaseFirestore.instance
-          .collection('questions')
-          .doc(RootApp.emailName)
-          .get()
-          .then((DocumentSnapshot documentSnapshot) {
-
-        if (documentSnapshot.exists) {
-          print('kayen');
-          print('Document data: ${documentSnapshot.data()}');
-        state = 1 ;
+  int etat = 0 ;
+  String cons = '';
 
 
-        } else {
-          print('Document does not exist on the database');
-          state = 0 ;
-        }
-      });
-    }catch(e){
-      e.message ;
-    }
 
-  }
   @override
   Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          body: Container(
-            color: Colors.white,
-            child: Align(
-              alignment: Alignment.center,
-              child: Container(
-                height: double.infinity,
-                width: 600,
-                child: SurveyKit(
-                  onResult: (SurveyResult result) {
-                    print(result.finishReason);
-                  },
-                  task: getSampleTask(),
-                  themeData: Theme.of(context).copyWith(
-                    colorScheme: ColorScheme.fromSwatch(
-                      primarySwatch: Colors.cyan,
-                    ).copyWith(
-                      onPrimary: Colors.white,
-                    ),
-                    primaryColor: Colors.cyan,
-                    backgroundColor: Colors.white,
-                    appBarTheme: const AppBarTheme(
-                      color: Colors.white,
-                      iconTheme: IconThemeData(
-                        color: Colors.cyan,
-                      ),
-                      textTheme: TextTheme(
-                        button: TextStyle(
-                          color: Colors.cyan,
-                        ),
-                      ),
-                    ),
-                    iconTheme: const IconThemeData(
-                      color: Colors.cyan,
-                    ),
-                    outlinedButtonTheme: OutlinedButtonThemeData(
-                      style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(
-                          Size(150.0, 60.0),
-                        ),
-                        side: MaterialStateProperty.resolveWith(
-                              (Set<MaterialState> state) {
-                            if (state.contains(MaterialState.disabled)) {
-                              return BorderSide(
-                                color: Colors.grey,
-                              );
-                            }
-                            return BorderSide(
-                              color: Colors.cyan,
-                            );
-                          },
-                        ),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                        textStyle: MaterialStateProperty.resolveWith(
-                              (Set<MaterialState> state) {
-                            if (state.contains(MaterialState.disabled)) {
-                              return Theme.of(context).textTheme.button?.copyWith(
-                                color: Colors.grey,
-                              );
-                            }
-                            return Theme.of(context).textTheme.button?.copyWith(
-                              color: Colors.cyan,
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                    textButtonTheme: TextButtonThemeData(
-                      style: ButtonStyle(
-                        textStyle: MaterialStateProperty.all(
-                          Theme.of(context).textTheme.button?.copyWith(
-                            color: Colors.cyan,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
+    void getData() async {
+      try{
+
+        await FirebaseFirestore.instance
+            .collection('questions')
+            .doc(RootAppPrim.emailName)
+            .get()
+            .then((DocumentSnapshot documentSnapshot) {
+
+          if (documentSnapshot.exists) {
+            print('kayen');
+            print('Document data: ${documentSnapshot.data()}');
+
+            if(documentSnapshot.data()[krep]==true){
+              state = 2 ;
+
+              try{
+                FirebaseFirestore.instance
+                    .collection('reponses')
+                    .doc(RootAppPrim.emailName)
+                    .get()
+                    .then((DocumentSnapshot documentSnapshot) {
+
+                  if (documentSnapshot.exists) {
+                    print('kayen');
+                    print('Document data: ${documentSnapshot.data()}');
+                    etat=documentSnapshot.data()['etat'];
+                    cons = documentSnapshot.data()['consignes'];
+                    //adresse = documentSnapshot.data()[kadresse];
+
+                  } else {
+                    print('Document does not exist on the database');
+                    //  adresse ='-1';
+                  }
+                });
+              }catch(e){
+                print(e.toString());
+              }
+
+
+            }else {
+              state = 1 ;
+            }
+
+            //adresse = documentSnapshot.data()[kadresse];
+
+          } else {
+            print('Document does not exist on the database');
+            state=0;
+            //  adresse ='-1';
+          }
+        });
+      }catch(e){
+        e.message ;
+      }
+    }
+
+    getData() ;
+
+      if(state==0){
+        return questionnaire();
+      }else if(state==1){
+        return WelcomeScreen();
+      }else return ResultPage(
+        etat: etat,
+        consignes: cons,
       );
+
   }
 
 
@@ -275,14 +235,7 @@ class _DailyQuestionState extends State<DailyQuestion> {
     return task;
   }
 
-  Widget thankYouPage()
-  {
-    return Center(
-      child: Text(
-        'hello'
-      ),
-    );
-  }
+
 
 
   bool convert ( var param){
@@ -290,117 +243,172 @@ class _DailyQuestionState extends State<DailyQuestion> {
       return true ;
     else return false ;
   }
-}
+
+  Widget questionnaire(){
+    return MaterialApp(
+      home: Scaffold(
+        body: Background(
+          child: Container(
+            color: Colors.white,
+            child: Align(
+              alignment: Alignment.center,
+              child: Container(
+                height: double.infinity,
+                width: 600,
 
 
-/*Widget questionnaire(){
-  return MaterialApp(
-    home: Scaffold(
-      body: Background(
-        child: Container(
-          color: Colors.white,
-          child: Align(
-            alignment: Alignment.center,
-            child: Container(
-              height: double.infinity,
-              width: 600,
+                child: SurveyKit(
+                  onResult: (SurveyResult result) async {
+                    CollectionReference questions = FirebaseFirestore.instance.collection('questions');
+                    questions..doc(RootAppPrim.emailName).set(
+                        {
+                          kage : result.results[1].results[0].result ,
+                          kmed : convert(result.results[2].results[0].result) ,
+                          ktoux :convert(result.results[3].results[0].result) ,
+                          kres : convert(result.results[4].results[0].result) ,
+                          kdouleur : convert(result.results[5].results[0].result) ,
+                          kgout : convert(result.results[6].results[0].result) ,
+                          ktemp : result.results[7].results[0].result.toString(),
+                          kdescription : result.results[8].results[0].result,
+                          kenv : true,
+                          krep : false ,
+                          'n':"KA",
+                          'idoc' : RootAppPrim.emailName,}
+                    )
+                        .then((value) => print("User Added"))
+                        .catchError((error) => print("Failed to add user: $error"));
+                    print(result.results[1].results[0].result);
+                    print(convert(result.results[2].results[0].result));
+                    print(result.results[3].results[0].result);
+                    print(result.results[4].results[0].result);
+                    print(result.results[5].results[0].result);
+                    setState(() async {
+                      try{
+
+                        await FirebaseFirestore.instance
+                            .collection('questions')
+                            .doc(RootAppPrim.emailName)
+                            .get()
+                            .then((DocumentSnapshot documentSnapshot) {
+
+                          if (documentSnapshot.exists) {
+                            print('kayen');
+                            print('Document data: ${documentSnapshot.data()}');
+                            if(documentSnapshot.data()[krep]=true){
+                              state = 2 ;
+
+                              try{
+                                FirebaseFirestore.instance
+                                    .collection('reponses')
+                                    .doc(RootAppPrim.emailName)
+                                    .get()
+                                    .then((DocumentSnapshot documentSnapshot) {
+
+                                  if (documentSnapshot.exists) {
+                                    print('kayen');
+                                    print('Document data: ${documentSnapshot.data()}');
+                                    etat=documentSnapshot.data()['etat'];
+                                    cons = documentSnapshot.data()['consignes'];
+                                    //adresse = documentSnapshot.data()[kadresse];
+
+                                  } else {
+                                    print('Document does not exist on the database');
+                                    //  adresse ='-1';
+                                  }
+                                });
+                              }catch(e){
+                                print(e.toString());
+                              }
 
 
-              child: SurveyKit(
-                onResult: (SurveyResult result) async {
-                  CollectionReference questions = FirebaseFirestore.instance.collection('questions');
-                  questions..doc(RootApp.emailName).set(
-                      {
-                        kage : result.results[1].results[0].result ,
-                        kmed : convert(result.results[2].results[0].result) ,
-                        ktoux :convert(result.results[3].results[0].result) ,
-                        kres : convert(result.results[4].results[0].result) ,
-                        kdouleur : convert(result.results[5].results[0].result) ,
-                        kgout : convert(result.results[6].results[0].result) ,
-                        ktemp : result.results[7].results[0].result,
-                        kdescription : result.results[8].results[0].result,
-                        kenv : true,
-                        krep : false ,
-                        idoc : RootApp.emailName}
-                  )
-                      .then((value) => print("User Added"))
-                      .catchError((error) => print("Failed to add user: $error"));
-                  print(result.results[1].results[0].result);
-                  print(convert(result.results[2].results[0].result));
-                  print(result.results[3].results[0].result);
-                  print(result.results[4].results[0].result);
-                  print(result.results[5].results[0].result);
+                            }else {
+                              state = 1 ;
+                            }
 
-                },
-                task: getSampleTask(),
-                themeData: Theme.of(context).copyWith(
-                  colorScheme: ColorScheme.fromSwatch(
-                    primarySwatch: Colors.cyan,
-                  ).copyWith(
-                    onPrimary: Colors.white,
-                  ),
-                  primaryColor: ksecondaryColor,
-                  backgroundColor: Colors.white,
+                            //adresse = documentSnapshot.data()[kadresse];
 
-                  appBarTheme: const AppBarTheme(
-                    color: kPrimaryColor,
-                    iconTheme: IconThemeData(
-                      color: kPrimaryColor,
-                    ),
-                    textTheme: TextTheme(
-                      button: TextStyle(
-                        color:kPrimaryColor,
-                      ),
-                    ),
-                  ),
-
-                  iconTheme: const IconThemeData(
-                    color: kPrimaryColor,
-                  ),
-
-                  outlinedButtonTheme: OutlinedButtonThemeData(
-                    style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(
-                        Size(150.0, 60.0),
-                      ),
-                      side: MaterialStateProperty.resolveWith(
-                            (Set<MaterialState> state) {
-                          if (state.contains(MaterialState.disabled)) {
-                            return BorderSide(
-                              color: Colors.grey,
-                            );
+                          } else {
+                            print('Document does not exist on the database');
+                            state=0;
+                            //  adresse ='-1';
                           }
-                          return BorderSide(
-                            color: ksecondaryColor,
-                          );
-                        },
+                        });
+                      }catch(e){
+                        e.message ;
+                      }
+                    });
+
+                  },
+                  task: getSampleTask(),
+                  themeData: Theme.of(context).copyWith(
+                    colorScheme: ColorScheme.fromSwatch(
+                      primarySwatch: Colors.cyan,
+                    ).copyWith(
+                      onPrimary: Colors.white,
+                    ),
+                    primaryColor: ksecondaryColor,
+                    backgroundColor: Colors.white,
+
+                    appBarTheme: const AppBarTheme(
+                      color: kPrimaryColor,
+                      iconTheme: IconThemeData(
+                        color: kPrimaryColor,
                       ),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                      textTheme: TextTheme(
+                        button: TextStyle(
+                          color:kPrimaryColor,
                         ),
                       ),
+                    ),
 
-                      textStyle: MaterialStateProperty.resolveWith(
-                            (Set<MaterialState> state) {
-                          if (state.contains(MaterialState.disabled)) {
-                            return Theme.of(context).textTheme.button?.copyWith(
+                    iconTheme: const IconThemeData(
+                      color: kPrimaryColor,
+                    ),
+
+                    outlinedButtonTheme: OutlinedButtonThemeData(
+                      style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(
+                          Size(150.0, 60.0),
+                        ),
+                        side: MaterialStateProperty.resolveWith(
+                              (Set<MaterialState> state) {
+                            if (state.contains(MaterialState.disabled)) {
+                              return BorderSide(
+                                color: Colors.grey,
+                              );
+                            }
+                            return BorderSide(
                               color: ksecondaryColor,
                             );
-                          }
-                          return Theme.of(context).textTheme.button?.copyWith(
-                            color: kPrimaryColor,
-                          );
-                        },
+                          },
+                        ),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+
+                        textStyle: MaterialStateProperty.resolveWith(
+                              (Set<MaterialState> state) {
+                            if (state.contains(MaterialState.disabled)) {
+                              return Theme.of(context).textTheme.button?.copyWith(
+                                color: ksecondaryColor,
+                              );
+                            }
+                            return Theme.of(context).textTheme.button?.copyWith(
+                              color: kPrimaryColor,
+                            );
+                          },
+                        ),
                       ),
                     ),
-                  ),
 
-                  textButtonTheme: TextButtonThemeData(
-                    style: ButtonStyle(
-                      textStyle: MaterialStateProperty.all(
-                        Theme.of(context).textTheme.button?.copyWith(
-                          color: ksecondaryColor,
+                    textButtonTheme: TextButtonThemeData(
+                      style: ButtonStyle(
+                        textStyle: MaterialStateProperty.all(
+                          Theme.of(context).textTheme.button?.copyWith(
+                            color: ksecondaryColor,
+                          ),
                         ),
                       ),
                     ),
@@ -411,6 +419,8 @@ class _DailyQuestionState extends State<DailyQuestion> {
           ),
         ),
       ),
-    ),
-  );
-}*/
+    );
+  }
+}
+
+

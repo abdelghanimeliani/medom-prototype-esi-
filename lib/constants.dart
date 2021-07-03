@@ -22,5 +22,5 @@ const ktoux="toux";
 const kres = "res";
 const kgout = "gout";
 const kdouleur = "douleur";
-const ktemp = "temp" ;
+const ktemp = "tempi" ;
 const kmed = "med" ;

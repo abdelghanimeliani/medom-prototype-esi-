@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:medom/screens/detail/detailpage.dart';
 
 import '../../constants.dart';
 
@@ -28,80 +29,94 @@ class _DoctorPageState extends State<DoctorPage> {
           padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
           child: InkWell(
             onTap: () {
-
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DetailPage(
+                description: desc,
+                age: age.toString(),
+                temp: temp,
+                toux: toux,
+                res: res,
+                gout: gout,
+                name: username,
+                med: med,
+                douleur: douleur,
+              )));
             },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                    child:Column(
-                      children: [Row(children: [
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.only(bottom: 15.0),
-                          decoration: BoxDecoration(
-                              color: kPrimaryColor, shape: BoxShape.circle),
-                          child: Text(
-                            N,
-                            style: TextStyle(
-                                color: kPrimaryLightColor,
-                                fontFamily: 'Montserrat',
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold),
+            child: SingleChildScrollView(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                      child:Column(
+                        children: [Row(children: [
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.only(bottom: 15.0),
+                            decoration: BoxDecoration(
+                                color: kPrimaryColor, shape: BoxShape.circle),
+                            child: Text(
+                              N,
+                              style: TextStyle(
+                                  color: kPrimaryLightColor,
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
 
 
-                        SizedBox(width: 30.0),
-                        Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(username,
-                                  style: TextStyle(
-                                      color: kPrimaryColor,
+                          SizedBox(width: 30.0),
+                          Column(crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(username,
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontFamily: 'Montserrat',
+                                        fontSize: 17.0,
+                                        fontWeight: FontWeight.bold)),
+                                SizedBox(height: 10.0),
+
+
+                                Text(age.toString() + " ans" ,
+                                    style: TextStyle(
                                       fontFamily: 'Montserrat',
-                                      fontSize: 17.0,
-                                      fontWeight: FontWeight.bold)),
-                              SizedBox(height: 10.0),
+                                      fontSize: 15.0,
+                                      color: kPrimaryColor,
+                                    )),
+
+                                SizedBox(height: 10.0),
+                                Text( '" '+desc+' "',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 15.0,
+                                      color: kPrimaryColor,
+                                    )),
+
+                                SizedBox(height: 10.0),
 
 
-                              Text(age.toString() + " ans" ,
-                                  style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 15.0,
-                                    color: kPrimaryColor,
-                                  )),
+                                Text("temperature : "+temp,
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 13.0,
+                                      color: Colors.red,
+                                    )),
 
-                              SizedBox(height: 10.0),
-                              Text( '" '+desc+' "',
-                                  style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 15.0,
-                                    color: kPrimaryColor,
-                                  )),
-
-                              SizedBox(height: 10.0),
+                              ]),
 
 
-                              Text("temperature : "+temp,
-                                  style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 13.0,
-                                    color: Colors.red,
-                                  ))
-                            ]),
+                        ])
+                          ,SizedBox(height: 10.0,),
+                       ],
+                      )),
 
 
-                      ])
-                        ,SizedBox(height: 10.0,)],
-                    )),
+                  Icon(
+                      Icons.arrow_forward  ,
+                      color: ksecondaryColor,
+                      ),
 
-
-                Icon(
-                    Icons.arrow_forward  ,
-                    color: ksecondaryColor,
-                    ),
-
-              ],
+                ],
+              ),
             ),
           ));
     }
@@ -179,8 +194,7 @@ class _DoctorPageState extends State<DoctorPage> {
                   )
                 ]              ,
               ),
-
-
+              
             )
           ],
         ),
