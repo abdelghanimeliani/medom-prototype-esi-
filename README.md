@@ -28,7 +28,7 @@ c'est une petite fonctionalité d'une application qui s'appelle medome , constru
 
 |merci|courbatures ou douleures|resultat|
 |:------------:|:------------:|:-------------:|
-![merci](assets/images/medui.png)|![courbatures ou douleure](assets/images/detail_page.png)|![resultat](assets/images/ques.png)|
+![merci](assets/images/medui.png)|![courbatures ou douleure](assets/images/courbatures.png)|![resultat](assets/images/ques.png)|
 
 
 
