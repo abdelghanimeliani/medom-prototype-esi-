@@ -12,6 +12,10 @@ c'est une petite fonctionalité d'une application qui s'appelle medome , constru
   </a>
 
   <h3 align="center">le logo de medom</h3>
+created by
+
+Abdelghani MELIANI
+Oussama DJATAOU
 
 
 
